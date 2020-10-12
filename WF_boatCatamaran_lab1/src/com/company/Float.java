@@ -17,7 +17,6 @@ public enum Float {
                 return THREE;
             default:
                 return EMPTY;
-
         }
     }
 
