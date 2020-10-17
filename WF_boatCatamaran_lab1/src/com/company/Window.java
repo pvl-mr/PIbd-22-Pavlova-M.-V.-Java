@@ -90,15 +90,12 @@ public class Window {
         createBoat.setBackground(new Color(165, 165, 201));
         createBoat.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
                 boat = new Catamaran((int) (Math.random() * 800 + 500),
                         (int) (Math.random() * 4000 + 2000),
                         new Color(255, 207, 135),
                         Color.ORANGE,
                         true);
-
                 boat.setCountFloat((int)spinnerForFloats.getValue());
-
                 boat.setPosition((int) (Math.random() * 200), (int) (Math.random() * 200), contentPane.getWidth(), contentPane.getHeight());
                 panelForBoat = new PanelBoat(boat);
                 panelForBoat.setBounds(5, 5, 105s0, 650);
@@ -109,8 +106,6 @@ public class Window {
         });
         createBoat.setBounds(1200, 50,100, 50);
         contentPane.add(createBoat);
-
     }
-
 
 }
