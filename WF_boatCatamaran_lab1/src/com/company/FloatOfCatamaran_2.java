@@ -2,21 +2,17 @@ package com.company;
 
 import java.awt.*;
 
-public class FloatOfCatamaran implements IDopDet{
+public class FloatOfCatamaran_2 implements IDopDet{
 
     private Detail countFloat;
     private int size;
 
-    public FloatOfCatamaran() {
+    public FloatOfCatamaran_2() {
         countFloat = Detail.toNum(0);
     }
 
     public void setSize(int size_) {
         size = size_;
-    }
-
-    public int getSize() {
-        return size;
     }
 
     public void setNumberOfDetails(int numFloat) {
@@ -45,10 +41,8 @@ public class FloatOfCatamaran implements IDopDet{
         Polygon rightF = new Polygon();
         rightF.addPoint(startPosX + 2*size, startPosY+size);
         rightF.addPoint(startPosX + 21*size, startPosY+size);
-        rightF.addPoint(startPosX + 22*size, startPosY+2*size);
         rightF.addPoint(startPosX + 21*size, startPosY+3*size);
         rightF.addPoint(startPosX + 2*size, startPosY+3*size);
-        rightF.addPoint(startPosX + size, startPosY+2*size);
         g2.setColor(color);
         g2.fillPolygon(rightF);
 
@@ -58,10 +52,8 @@ public class FloatOfCatamaran implements IDopDet{
         Polygon leftF = new Polygon();
         leftF.addPoint(startPosX + 2*size, startPosY+size+ 9*size);
         leftF.addPoint(startPosX + 21*size, startPosY+size+ 9*size);
-        leftF.addPoint(startPosX + 22*size, startPosY+2*size+ 9*size);
         leftF.addPoint(startPosX + 21*size, startPosY+3*size+ 9*size);
         leftF.addPoint(startPosX + 2*size, startPosY+3*size+ 9*size);
-        leftF.addPoint(startPosX + size, startPosY+2*size+ 9*size);
         g2.setColor(color);
         g2.fillPolygon(leftF);
         drawFloat1(startPosX, startPosY, g2, color);
@@ -71,10 +63,8 @@ public class FloatOfCatamaran implements IDopDet{
         Polygon leftF = new Polygon();
         leftF.addPoint(startPosX + 2*size, startPosY+size+ 11*size);
         leftF.addPoint(startPosX + 21*size, startPosY+size+ 11*size);
-        leftF.addPoint(startPosX + 22*size, startPosY+2*size+ 11*size);
         leftF.addPoint(startPosX + 21*size, startPosY+3*size+ 11*size);
         leftF.addPoint(startPosX + 2*size, startPosY+3*size+ 11*size);
-        leftF.addPoint(startPosX + size, startPosY+2*size+ 11*size);
         g2.setColor(color);
         g2.fillPolygon(leftF);
         drawFloat2(startPosX, startPosY, g2, color);

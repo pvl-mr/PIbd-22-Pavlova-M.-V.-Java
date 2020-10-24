@@ -2,12 +2,12 @@ package com.company;
 
 import java.awt.*;
 
-public class FloatOfCatamaran implements IDopDet{
+public class FloatOfCatamaran_3 implements IDopDet{
 
     private Detail countFloat;
     private int size;
 
-    public FloatOfCatamaran() {
+    public FloatOfCatamaran_3() {
         countFloat = Detail.toNum(0);
     }
 
@@ -51,6 +51,12 @@ public class FloatOfCatamaran implements IDopDet{
         rightF.addPoint(startPosX + size, startPosY+2*size);
         g2.setColor(color);
         g2.fillPolygon(rightF);
+        g2.setColor(Color.getHSBColor(651651,651,651));
+
+        g2.fillOval(startPosX + 2*size, startPosY+size, 22*size, 2*size);
+
+
+
 
     }
 
@@ -64,6 +70,8 @@ public class FloatOfCatamaran implements IDopDet{
         leftF.addPoint(startPosX + size, startPosY+2*size+ 9*size);
         g2.setColor(color);
         g2.fillPolygon(leftF);
+        g2.setColor(Color.getHSBColor(651651,651,651));
+        g2.fillOval(startPosX + 2*size, startPosY+size+9*size, 22*size, 2*size);
         drawFloat1(startPosX, startPosY, g2, color);
     }
 
@@ -77,6 +85,8 @@ public class FloatOfCatamaran implements IDopDet{
         leftF.addPoint(startPosX + size, startPosY+2*size+ 11*size);
         g2.setColor(color);
         g2.fillPolygon(leftF);
+        g2.setColor(Color.getHSBColor(651651,651,651));
+        g2.fillOval(startPosX + 2*size, startPosY+size+11*size, 22*size, 2*size);
         drawFloat2(startPosX, startPosY, g2, color);
     }
 

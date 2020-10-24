@@ -1,13 +1,13 @@
 package com.company;
 
-public enum Float {
+public enum Detail {
 
     ONE,
     TWO,
     THREE,
     EMPTY;
 
-    public static Float toFloat(int n){
+    public static Detail toNum(int n){
         switch (n){
             case 1:
                 return ONE;
@@ -17,6 +17,7 @@ public enum Float {
                 return THREE;
             default:
                 return EMPTY;
+
         }
     }
 

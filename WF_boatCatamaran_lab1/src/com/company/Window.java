@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 public class Window {
 
+
     public JFrame contentFrame;
     private JPanel panelForButton;
     private JPanel panelForBoat;
@@ -18,9 +19,12 @@ public class Window {
     private JButton toRight;
     private JButton toDown;
     private JButton createBoat;
+    private JButton createCatamaran;
     private JSpinner spinnerForFloats;
+    private JMenu menuTypeDetails;
+    private TypeOfDet detailsType;
 
-    private Catamaran boat;
+    private ITransport boat;
 
     public Window() {
        initialize();
@@ -37,7 +41,7 @@ public class Window {
         contentPane.setLayout(null);
 
         spinnerForFloats = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
-        spinnerForFloats.setBounds(1200, 100,100, 50);
+        spinnerForFloats.setBounds(1300, 100,100, 50);
         contentPane.add(spinnerForFloats);
 
         toLeft = new JButton("Left");
@@ -86,19 +90,19 @@ public class Window {
         toDown.setBounds(1200, 550, 100, 50);
         contentPane.add(toDown);
 
-        createBoat = new JButton("Create");
+        createBoat = new JButton("Boat");
         createBoat.setBackground(new Color(165, 165, 201));
         createBoat.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                boat = new Catamaran((int) (Math.random() * 800 + 500),
+
+                boat = new Boat((int) (Math.random() * 800 + 500),
                         (int) (Math.random() * 4000 + 2000),
-                        new Color(255, 207, 135),
-                        Color.ORANGE,
-                        true);
-                boat.setCountFloat((int)spinnerForFloats.getValue());
+                        Color.ORANGE);
+
+
                 boat.setPosition((int) (Math.random() * 200), (int) (Math.random() * 200), contentPane.getWidth(), contentPane.getHeight());
                 panelForBoat = new PanelBoat(boat);
-                panelForBoat.setBounds(5, 5, 105s0, 650);
+                panelForBoat.setBounds(5, 5, 1050, 650);
                 panelForBoat.setBackground(new Color(165, 165, 201));
                 contentFrame.getContentPane().add(panelForBoat);
                 panelForBoat.repaint();
@@ -106,6 +110,74 @@ public class Window {
         });
         createBoat.setBounds(1200, 50,100, 50);
         contentPane.add(createBoat);
+
+        createCatamaran = new JButton("Catamaran");
+        createCatamaran.setBackground(new Color(165, 165, 201));
+        createCatamaran.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                boat = new Catamaran((int) (Math.random() * 800 + 500),
+                        (int) (Math.random() * 4000 + 2000),
+                        new Color(255, 207, 135),
+                        Color.ORANGE,
+                        true);
+
+                ((Catamaran) boat).setTypeDetails(detailsType);
+                ((Catamaran) boat).setNumDetails((int) spinnerForFloats.getValue());
+
+                boat.setPosition((int) (Math.random() * 200), (int) (Math.random() * 200), contentPane.getWidth(), contentPane.getHeight());
+                panelForBoat = new PanelBoat(boat);
+                panelForBoat.setBounds(5, 5, 1050, 650);
+                panelForBoat.setBackground(new Color(165, 165, 201));
+                contentFrame.getContentPane().add(panelForBoat);
+                panelForBoat.repaint();
+            }
+        });
+        createCatamaran.setBounds(1300, 50,100, 50);
+        contentPane.add(createCatamaran);
+
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.setBackground(new Color(165, 165, 201));
+        menuBar.setBounds(1200, 100,100, 50);
+        contentPane.add(menuBar);
+
+        menuTypeDetails = new JMenu("Детали");
+
+        JMenuItem itemOldRadar = new JMenuItem("Поплавки 1-го типа");
+        itemOldRadar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                detailsType = TypeOfDet.FLOAT_TYPE1;
+                menuTypeDetails.setText("Поплавки 1-го типа");
+            }
+        });
+        menuTypeDetails.add(itemOldRadar);
+
+        JMenuItem itemNewRadar = new JMenuItem("Поплавки 2-го типа");
+        itemNewRadar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                detailsType = TypeOfDet.FLOAT_TYPE2;
+                menuTypeDetails.setText("Поплавки 2-го типа");
+
+            }
+        });
+        menuTypeDetails.add(itemNewRadar);
+
+        JMenuItem itemLines = new JMenuItem("Поплавки 3-го типа");
+        itemLines.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                detailsType = TypeOfDet.FLOAT_TYPE3;
+                menuTypeDetails.setText("Поплавки 3-го типа");
+            }
+        });
+        menuTypeDetails.add(itemLines);
+
+        menuBar.add(menuTypeDetails);
+
+
     }
+
 
 }
