@@ -23,8 +23,6 @@ public class Boat extends SwimmingTransport {
         this.boatHeight = carHeight;
     }
 
-
-
     @Override
     public void moveTransport(Direction direction)
     {
@@ -45,7 +43,6 @@ public class Boat extends SwimmingTransport {
                     startPosX -= step;
                 }
                 break;
-            //вверх
             //вверх
             case Up:
                 if (startPosY - step > 0)
@@ -80,7 +77,6 @@ public class Boat extends SwimmingTransport {
         p1.addPoint(startPosX + 2*size, startPosY + 6*size+floatSize);
         g2.setColor(mainColor);
         g2.fillPolygon(p1);
-
     }
 
 }
