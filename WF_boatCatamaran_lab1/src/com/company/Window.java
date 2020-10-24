@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 
 public class Window {
 
-
     public JFrame contentFrame;
     private JPanel panelForButton;
     private JPanel panelForBoat;
@@ -175,7 +174,6 @@ public class Window {
         menuTypeDetails.add(itemLines);
 
         menuBar.add(menuTypeDetails);
-
 
     }
 
