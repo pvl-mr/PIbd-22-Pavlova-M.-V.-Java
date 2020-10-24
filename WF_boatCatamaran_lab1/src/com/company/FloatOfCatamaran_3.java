@@ -52,12 +52,7 @@ public class FloatOfCatamaran_3 implements IDopDet{
         g2.setColor(color);
         g2.fillPolygon(rightF);
         g2.setColor(Color.getHSBColor(651651,651,651));
-
         g2.fillOval(startPosX + 2*size, startPosY+size, 22*size, 2*size);
-
-
-
-
     }
 
     private void drawFloat2(int startPosX, int startPosY, Graphics2D g2, Color color) {
