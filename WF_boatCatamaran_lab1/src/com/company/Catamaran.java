@@ -4,9 +4,7 @@ import java.awt.*;
 
 public class Catamaran extends Boat{
 
-
     private IDopDet extraDet;
-
     public Color mainColor;
     public Color dopColor;
     public boolean sideFloats;
@@ -25,11 +23,9 @@ public class Catamaran extends Boat{
         int startPosY = (int) this.startPosY;
         Graphics2D g2 = (Graphics2D) g;
         super.drawTransport(g2);
-
         if (extraDet != null) {
             extraDet.draw(startPosX, startPosY, Color.ORANGE, g2);
         }
-
     }
 
     public void setTypeDetails(TypeOfDet detailsType) {
