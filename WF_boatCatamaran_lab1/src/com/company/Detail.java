@@ -17,7 +17,6 @@ public enum Detail {
                 return THREE;
             default:
                 return EMPTY;
-
         }
     }
 
