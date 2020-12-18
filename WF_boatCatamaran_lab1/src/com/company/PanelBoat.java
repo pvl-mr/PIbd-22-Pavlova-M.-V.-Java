@@ -1,20 +1,25 @@
 package com.company;
 
+import com.company.ITransport;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class PanelBoat extends JPanel {
 
-    ITransport boat;
+    private ITransport boat;
 
-    public PanelBoat(ITransport boat) {
+    public void paintComponent(Graphics g) {
+        if (boat != null) {
+            boat.drawTransport(g);
+        }
+    }
+
+    public void setBoat(ITransport boat) {
         this.boat = boat;
     }
 
-    public void paint(Graphics g) {
-        super.paint(g);
-        boat.drawTransport(g);
+    public ITransport getBoat() {
+        return boat;
     }
-
-
 }

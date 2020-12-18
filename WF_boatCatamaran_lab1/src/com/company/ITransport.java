@@ -1,12 +1,13 @@
 package com.company;
 
+import com.company.Direction;
+
 import java.awt.*;
 
 public interface ITransport {
 
-    public void setPosition(int x, int y, int width, int height);
-    public void moveTransport(Direction direction);
-    public void drawTransport(Graphics g);
-
+     void setPosition(int x, int y, int width, int height);
+     void moveTransport(Direction direction);
+     void drawTransport(Graphics g);
 
 }

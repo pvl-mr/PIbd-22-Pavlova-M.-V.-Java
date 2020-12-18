@@ -9,16 +9,16 @@ public class Boat extends SwimmingTransport {
 
     public Boat(int maxSpeed, float weight, Color mainColor)
     {
-        maxSpeed = maxSpeed;
-        weight = weight;
-        mainColor = mainColor;
+        this.maxSpeed = maxSpeed;
+        this.weight = weight;
+        this.mainColor = mainColor;
     }
 
     protected Boat(int maxSpeed, float weight, Color mainColor, int carWidth, int carHeight)
     {
-        maxSpeed = maxSpeed;
-        weight = weight;
-        mainColor = mainColor;
+        this.maxSpeed = maxSpeed;
+        this.weight = weight;
+        this.mainColor = mainColor;
         this.boatWidth = carWidth;
         this.boatHeight = carHeight;
     }
@@ -78,5 +78,4 @@ public class Boat extends SwimmingTransport {
         g2.setColor(mainColor);
         g2.fillPolygon(p1);
     }
-
 }

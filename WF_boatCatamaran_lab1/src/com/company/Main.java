@@ -3,8 +3,9 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        Window my = new Window();
+
+        FormParking my = new FormParking();
         my.contentFrame.setVisible(true);
+
     }
-    
 }
