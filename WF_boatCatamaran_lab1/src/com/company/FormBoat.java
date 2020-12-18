@@ -1,17 +1,13 @@
 package com.company;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Window {
+public class FormBoat {
 
     public JFrame contentFrame;
-    private JPanel panelForButton;
-    private JPanel panelForBoat;
-    private JPanel contentPane;
 
     private JButton toLeft;
     private JButton toUp;
@@ -19,29 +15,27 @@ public class Window {
     private JButton toDown;
     private JButton createBoat;
     private JButton createCatamaran;
-    private JSpinner spinnerForFloats;
     private JMenu menuTypeDetails;
+    private JSpinner spinnerForFloats;
     private TypeOfDet detailsType;
 
     private ITransport boat;
+    private PanelBoat panelForBoat;
 
-    public Window() {
+    public FormBoat() {
        initialize();
     }
 
     public void initialize() {
+        panelForBoat = new PanelBoat();
+
         contentFrame = new JFrame();
         contentFrame.setTitle("Catamaran or boat?");
-        contentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        contentFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         contentFrame.setBounds(100, 100, 1500, 700);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentFrame.setContentPane(contentPane);
-        contentPane.setLayout(null);
-
         spinnerForFloats = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
         spinnerForFloats.setBounds(1300, 100,100, 50);
-        contentPane.add(spinnerForFloats);
+        contentFrame.getContentPane().add(spinnerForFloats);
 
         toLeft = new JButton("Left");
         toLeft.setBackground(new Color(165, 165, 201));
@@ -49,66 +43,59 @@ public class Window {
         toLeft.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 boat.moveTransport(Direction.Left);
-
-                panelForBoat.repaint();
+                contentFrame.repaint();
             }
         });
         toLeft.setBounds(1100, 550, 100, 50);
-        contentPane.add(toLeft);
+        contentFrame.getContentPane().add(toLeft);
 
         toUp = new JButton("Up");
         toUp.setBackground(new Color(165, 165, 201));
         toUp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 boat.moveTransport(Direction.Up);
-                panelForBoat.repaint();
+                contentFrame.repaint();
             }
         });
         toUp.setBounds(1200, 500, 100, 50);
-        contentPane.add(toUp);
+        contentFrame.getContentPane().add(toUp);
 
         toRight = new JButton("Right");
         toRight.setBackground(new Color(165, 165, 201));
         toRight.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 boat.moveTransport(Direction.Right);
-                panelForBoat.repaint();
+                contentFrame.repaint();
             }
         });
         toRight.setBounds(1300, 550, 100, 50);
-        contentPane.add(toRight);
+        contentFrame.getContentPane().add(toRight);
 
         toDown = new JButton("Down");
         toDown.setBackground(new Color(165, 165, 201));
         toDown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 boat.moveTransport(Direction.Down);
-                panelForBoat.repaint();
+                contentFrame.repaint();
             }
         });
         toDown.setBounds(1200, 550, 100, 50);
-        contentPane.add(toDown);
+        contentFrame.getContentPane().add(toDown);
 
         createBoat = new JButton("Boat");
         createBoat.setBackground(new Color(165, 165, 201));
         createBoat.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
                 boat = new Boat((int) (Math.random() * 800 + 500),
                         (int) (Math.random() * 4000 + 2000),
                         Color.ORANGE);
-
-
-                boat.setPosition((int) (Math.random() * 200), (int) (Math.random() * 200), contentPane.getWidth(), contentPane.getHeight());
-                panelForBoat = new PanelBoat(boat);
-                panelForBoat.setBounds(5, 5, 1050, 650);
-                panelForBoat.setBackground(new Color(165, 165, 201));
-                contentFrame.getContentPane().add(panelForBoat);
-                panelForBoat.repaint();
+                boat.setPosition((int) (Math.random() * 200), (int) (Math.random() * 200), contentFrame.getContentPane().getWidth(), contentFrame.getContentPane().getHeight());
+                panelForBoat.setBoat(boat);
+                contentFrame.repaint();
             }
         });
         createBoat.setBounds(1200, 50,100, 50);
-        contentPane.add(createBoat);
+        contentFrame.getContentPane().add(createBoat);
 
         createCatamaran = new JButton("Catamaran");
         createCatamaran.setBackground(new Color(165, 165, 201));
@@ -123,22 +110,18 @@ public class Window {
 
                 ((Catamaran) boat).setTypeDetails(detailsType);
                 ((Catamaran) boat).setNumDetails((int) spinnerForFloats.getValue());
-
-                boat.setPosition((int) (Math.random() * 200), (int) (Math.random() * 200), contentPane.getWidth(), contentPane.getHeight());
-                panelForBoat = new PanelBoat(boat);
-                panelForBoat.setBounds(5, 5, 1050, 650);
-                panelForBoat.setBackground(new Color(165, 165, 201));
-                contentFrame.getContentPane().add(panelForBoat);
-                panelForBoat.repaint();
+                boat.setPosition((int) (Math.random() * 200), (int) (Math.random() * 200), contentFrame.getContentPane().getWidth(), contentFrame.getContentPane().getHeight());
+                panelForBoat.setBoat(boat);
+                contentFrame.repaint();
             }
         });
         createCatamaran.setBounds(1300, 50,100, 50);
-        contentPane.add(createCatamaran);
+        contentFrame.getContentPane().add(createCatamaran);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.setBackground(new Color(165, 165, 201));
         menuBar.setBounds(1200, 100,100, 50);
-        contentPane.add(menuBar);
+        contentFrame.getContentPane().add(menuBar);
 
         menuTypeDetails = new JMenu("Детали");
 
@@ -172,10 +155,18 @@ public class Window {
             }
         });
         menuTypeDetails.add(itemLines);
-
         menuBar.add(menuTypeDetails);
-
+        contentFrame.getContentPane().add(panelForBoat);
     }
+
+    public void setBoat(ITransport boat) {
+        this.boat = boat;
+        boat.setPosition((int) (Math.random() * 200), (int) (Math.random() * 200), contentFrame.getContentPane().getWidth(), contentFrame.getContentPane().getHeight());
+        panelForBoat.setBoat(boat);
+        contentFrame.repaint();
+    }
+
+
 
 
 }

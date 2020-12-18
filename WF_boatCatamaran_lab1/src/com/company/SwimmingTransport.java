@@ -1,8 +1,11 @@
 package com.company;
 
+import com.company.Direction;
+import com.company.ITransport;
+
 import java.awt.*;
 
-abstract class SwimmingTransport implements ITransport{
+abstract class SwimmingTransport implements ITransport {
     protected int startPosX;
     protected int startPosY;
     protected int pictureWidth;
