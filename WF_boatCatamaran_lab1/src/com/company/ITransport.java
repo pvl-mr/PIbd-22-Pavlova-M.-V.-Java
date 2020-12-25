@@ -1,7 +1,5 @@
 package com.company;
 
-import com.company.Direction;
-
 import java.awt.*;
 
 public interface ITransport {
