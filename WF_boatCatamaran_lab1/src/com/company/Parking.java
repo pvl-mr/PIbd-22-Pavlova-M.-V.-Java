@@ -1,9 +1,13 @@
 package com.company;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Parking<T extends ITransport, T2 extends IDopDet> {
-    private final Object[] places;
+
+    private final List<T> places;
+    private final int maxCount;
 
     private final int pictureWidth;
 
@@ -16,39 +20,37 @@ public class Parking<T extends ITransport, T2 extends IDopDet> {
     public Parking(int picWidth, int picHeight) {
         int width = picWidth / placeSizeWidth;
         int height = picHeight / placeSizeHeight;
-        places = new Object[width * height];
+        maxCount = width * height;
         pictureWidth = picWidth;
         pictureHeight = picHeight;
+        places = new ArrayList<>();
     }
 
     public boolean add(T boat) {
-        int numberOfString = pictureHeight / placeSizeHeight;
-        for (int i = 0; i < places.length; i++) {
-            if (places[i] == null) {
-                boat.setPosition((i / numberOfString) *placeSizeWidth+10, (i % numberOfString)*placeSizeHeight+15, pictureWidth, pictureHeight);
-                places[i] = boat;
-                return true;
-            }
+        if (places.size() < maxCount) {
+            places.add(boat);
+            return true;
         }
         return false;
     }
 
     public T delete(int index) {
-        if (index >= places.length || index < 0 || places[index] == null) {
+        if (index < 0 || index > maxCount || places.get(index) == null) {
             return null;
         }
-        Object pl = places[index];
-        places[index] = null;
-        return (T) pl;
+        T boat = places.get(index);
+        places.remove(index);
+        return boat;
     }
 
     public void Draw(Graphics g)
     {
         DrawMarking(g);
-
-        for (int i = 0; i < places.length; i++) {
-            if (places[i] != null) {
-                ((T) places[i]).drawTransport(g);
+        int numberOfString = pictureHeight / placeSizeHeight;
+        for (int i = 0; i < places.size(); i++) {
+            if (places.get(i) != null) {
+                places.get(i).setPosition((i / numberOfString) *placeSizeWidth+10, (i % numberOfString)*placeSizeHeight+15, pictureWidth, pictureHeight);
+                places.get(i).drawTransport(g);
             }
 
         }
@@ -56,7 +58,6 @@ public class Parking<T extends ITransport, T2 extends IDopDet> {
 
     private void DrawMarking(Graphics g)
     {
-
         for (int i = 0; i < pictureWidth / placeSizeWidth; i++)
         {
             for (int j = 0; j < pictureHeight / placeSizeHeight + 1; ++j)
@@ -69,8 +70,8 @@ public class Parking<T extends ITransport, T2 extends IDopDet> {
 
     public int countPlaces() {
         int numberOfPlaces = 0;
-        for (int i = 0; i < places.length; i++) {
-            if (places[i] != null) {
+        for (int i = 0; i < places.size(); i++) {
+            if (places.get(i) != null) {
                 numberOfPlaces++;
             }
         }
@@ -83,6 +84,13 @@ public class Parking<T extends ITransport, T2 extends IDopDet> {
 
     public boolean less(int number) {
         return countPlaces() < number;
+    }
+
+    public T get(int index) {
+        if (index >= 0 && index < places.size()) {
+            return places.get(index);
+        }
+        return null;
     }
 
 }

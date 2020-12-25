@@ -165,8 +165,4 @@ public class FormBoat {
         panelForBoat.setBoat(boat);
         contentFrame.repaint();
     }
-
-
-
-
 }

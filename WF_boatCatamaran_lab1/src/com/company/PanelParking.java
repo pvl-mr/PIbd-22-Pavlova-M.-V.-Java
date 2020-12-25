@@ -1,22 +1,23 @@
 package com.company;
 
-import com.company.Parking;
-import com.company.Boat;
-import com.company.IDopDet;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class PanelParking extends JPanel {
-    private Parking<Boat, IDopDet> parking;
+    private final ParkingCollection parkingCollection;
+    private String selectedItem = null;
 
-    public PanelParking(Parking<Boat, IDopDet> parking) {
-        this.parking = parking;
+    public PanelParking(ParkingCollection parkingCollection) {
+        this.parkingCollection = parkingCollection;
     }
 
     protected void paintComponent(Graphics g) {
-        if (parking != null) {
-            parking.Draw(g);
+        if (selectedItem != null && parkingCollection != null) {
+            parkingCollection.get(selectedItem).Draw(g);
         }
+    }
+
+    public void setSelectedItem(String selectedItem) {
+        this.selectedItem = selectedItem;
     }
 }
